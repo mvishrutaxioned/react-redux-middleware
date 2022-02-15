@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductComponent from './ProductComponent';
-import { setProducts } from '../actions/productActions';
+import { fetchProducts, setProducts } from '../actions/productActions';
 
 const ProductListing = () => {
     const products = useSelector(state => state);
     const dispatch = useDispatch();
 
-    const fetchProducts = async () => {
-        const response = await axios('https://fakestoreapi.com/products')
-        .catch(err => console.log(err))
+    // const fetchProducts = async () => {
+    //     const response = await axios('https://fakestoreapi.com/products')
+    //     .catch(err => console.log(err))
 
-        dispatch(setProducts(response.data));
-    }
+    //     dispatch(setProducts(response.data));
+    // }
 
     useEffect(() => {
-        fetchProducts();
+        dispatch(fetchProducts());
     }, []);
 
     return (
